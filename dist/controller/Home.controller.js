@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/Device"],function(e,t){"use strict";return e.extend("com.emami.warehousemanagement.controller.Home",{onInit:function(){var e=this.getOwnerComponent().getRouter();e.getRoute("RouteHome").attachPatternMatched(this._onObjectMatched,this)},_onObjectMatched:function(e){var o=sap.ui.core.UIComponent.getRouterFor(this);debugger;if(t.system.phone||t.system.tablet){}else{}o.navTo("RouteHomePhone")}})});
+//# sourceMappingURL=Home.controller.js.map

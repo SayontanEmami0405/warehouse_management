@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <TableSelectDialog items="{jsonWareHouseNumberModel>/}" noDataText="No Data" liveChange="onSearchWareHouseNumberDialog" title="" confirm="onPressWareHouseNumberDialog" contentWidth="30%">
+        <columns>
+            <Column>
+                <header>
+                    <Text text="No." />
+                </header>
+            </Column>
+            <Column>
+                <header>
+                    <Text text="Description" />
+                </header>
+            </Column>
+        </columns>
+        <ColumnListItem>
+        
+            <cells>
+                <Text text="{jsonWareHouseNumberModel>Lgnum}" />
+            </cells>
+            <cells>
+                <Text text="{jsonWareHouseNumberModel>Lnumt}" />
+            </cells>
+        </ColumnListItem>
+    </TableSelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,8 @@
+<mvc:View controllerName="com.emami.warehousemanagement.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}" showHeader="false">
+        <content />
+        
+    </Page>
+</mvc:View>

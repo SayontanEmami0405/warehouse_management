@@ -1,0 +1,371 @@
+<mvc:View
+    controllerName="com.emami.warehousemanagement.controller.HomePhone"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="Phone"
+        showHeader="false"
+    >
+        <content>
+            <f:DynamicPage
+                id="dynamicPageId"
+                class="sapUiResponsiveContentPadding"
+                showFooter="true"
+                headerExpanded="true"
+            >
+                <f:title>
+                    <f:DynamicPageTitle class="borderBlue">
+                        <f:heading>
+                            <HBox>
+                                <Image
+                                    src="https://media.biltrax.com/wp-content/uploads/2022/07/1622183920155-emami-logo.png"
+                                    height="2rem"
+                                    width="2rem"
+                                />
+                                <Text
+                                    text="Warehouse Management"
+                                    class="whiteText sapUiMediumMarginBegin"
+                                />
+                            </HBox>
+                        </f:heading>
+                    </f:DynamicPageTitle>
+                </f:title>
+
+                <f:header>
+                    <f:DynamicPageHeader
+                        pinnable="true"
+                        class="borderBlue"
+                    >
+                        <form:SimpleForm
+                            editable="true"
+                            layout="ColumnLayout"
+                            columnsM="1"
+                            columnsL="2"
+                            columnsXL="3"
+                        >
+                            <form:content>
+                                <Label
+                                    text="Warehouse Number"
+                                    design="Bold"
+                                    class="whiteText"
+                                    required="true"
+                                />
+                                <Input
+                                    id="idWareHouseNumber"
+                                    textAlign="Center"
+                                    showValueHelp="true"
+                                    valueHelpRequest="onValueHelpWareHouseNumber"
+                                    valueHelpOnly="true"
+                                />
+                                <Label
+                                    text="Source Storage Type"
+                                    design="Bold"
+                                    class="whiteText"
+                                    visible="false"
+                                />
+                                <Input
+                                    id="idSourceStorageType"
+                                    textAlign="Center"
+                                    showValueHelp="true"
+                                    valueHelpRequest="onValueHelpSourceStorageType"
+                                    valueHelpOnly="true"
+                                    visible="false"
+                                />
+                                <Label
+                                    text="Dest. Storage Type"
+                                    design="Bold"
+                                    class="whiteText"
+                                    visible="false"
+                                />
+                                <Input
+                                    id="idDestStorageType"
+                                    textAlign="Center"
+                                    showValueHelp="true"
+                                    valueHelpRequest="onValueHelpDestStorageType"
+                                    valueHelpOnly="true"
+                                    visible="false"
+                                />
+                                <Label
+                                    text="Shipment Type"
+                                    design="Bold"
+                                    class="whiteText"
+                                    visible="false"
+                                />
+                                <Input
+                                    id="idShipmentType"
+                                    textAlign="Center"
+                                    showValueHelp="true"
+                                    valueHelpRequest="onValueHelpShipmentType"
+                                    valueHelpOnly="true"
+                                    visible="false"
+                                />
+                                <Label
+                                    text="Status Of Movement"
+                                    design="Bold"
+                                    class="whiteText"
+                                />
+
+                                <CheckBox
+                                    id="idCBStatusOpen"
+                                    text="Status: Open"
+                                    selected="true"
+                                />
+
+                                <Label
+                                    text=""
+                                    class="whiteText"
+                                />
+
+                                <CheckBox
+                                    id="idCBPartiallyDelivered"
+                                    text="Partially Delivered"
+                                />
+                                <Label
+                                    text=""
+                                    class="whiteText"
+                                />
+                                <CheckBox
+                                    id="idCBCompleted"
+                                    text="Completed"
+                                />
+                                <Label
+                                    text="Execute From (Date)"
+                                    design="Bold"
+                                    class="whiteText"
+                                    required="true"
+                                />
+                                <DatePicker
+                                    id="idDPExecuteFrom"
+                                    class="sapUiSmallMarginBottom"
+                                />
+
+                                <Label text="" />
+                                <Button
+                                    press="onPressSearch"
+                                    icon="sap-icon://search"
+                                />
+                                <Button
+                                    press="onPressClear"
+                                    icon="sap-icon://clear-filter"
+                                />
+                                 <Label text="Material" />
+                                 <Input
+                                    id="idMaterial"
+                                    textAlign="Center"
+                                    showValueHelp="true"
+                                    valueHelpRequest="onValueHelpMaterial"
+                                    valueHelpOnly="true"
+                                />
+                                <Button
+                                    press="onPressRemoveMaterialFilter"
+                                    icon="sap-icon://sys-cancel-2"
+                                />
+                            </form:content>
+                        </form:SimpleForm>
+                    </f:DynamicPageHeader>
+                </f:header>
+
+                <f:content>
+                    <!--  -->
+
+                    <f:GridList
+                        items="{jsonListModel>/Items}"
+                        growing="true"
+                        growingScrollToLoad="true"
+                        noDataText="No Data"
+                        id="idGridList"
+                    >
+                        <f:customLayout>
+                            <grid:GridResponsiveLayout containerQuery="true" />
+                        </f:customLayout>
+
+                        <!-- <f:headerToolbar>
+                            <Toolbar>
+                                 <Input
+                                    textAlign="Center"
+                                    showValueHelp="true"
+                                    valueHelpRequest="onValueHelpMaterial"
+                                    valueHelpOnly="true"
+                                />
+                            </Toolbar>
+                        </f:headerToolbar> -->
+
+                        <!-- greenBgItem -->
+                        <f:GridListItem
+                            id="idGridListItem"
+                            class="sapUiSmallMarginTop"
+                        >
+                            <f:layoutData>
+                                <grid:GridItemLayoutData />
+                            </f:layoutData>
+                            <Panel class="Test">
+                                <HBox class="sapUiSmallMarginTop">
+                                    <VBox width="40%">
+                                        <Label text="Material" />
+
+                                        <Text text="{jsonListModel>Matnr}" />
+                                    </VBox>
+
+                                    <VBox width="60%">
+                                        <Label text="Description" />
+
+                                        <Text text="{jsonListModel>Maktx}" />
+                                    </VBox>
+                                    <!-- <VBox width="60%">
+                                        <Label text="Movement Type" />
+
+                                        <Text text="{jsonListModel>Bwart}" />
+                                    </VBox> -->
+                                </HBox>
+
+                                <!-- <HBox class="sapUiSmallMarginTop">
+                                    <VBox width="40%">
+                                        <Label text="Source Storage Type" />
+
+                                        <Text text="{jsonListModel>Lety1}" />
+                                    </VBox>
+                                    <VBox width="60%">
+                                        <Label text="Material" />
+
+                                        <Text text="{jsonListModel>Matnr}" />
+                                    </VBox>
+                                </HBox> -->
+
+                                <HBox class="sapUiSmallMarginTop">
+                                    <VBox width="40%">
+                                        <Label text="GR Quantity" />
+
+                                        <Text text="{jsonListModel>Menge}" />
+                                    </VBox>
+
+                                    <VBox width="60%">
+                                        <Label text="UOM" />
+
+                                        <Text text="{jsonListModel>Meins}" />
+                                    </VBox>
+
+                                    <!-- <VBox width="60%">
+                                        <Label text="Plant" />
+
+                                        <Text text="{jsonListModel>Werks}" />
+                                    </VBox> -->
+                                </HBox>
+                                <!-- <HBox class="sapUiSmallMarginTop">
+                                    <VBox width="40%">
+                                        <Label text="Strorage Location" />
+
+                                        <Text text="{jsonListModel>Lgort}" />
+                                    </VBox>
+                                    <VBox width="60%">
+                                        <Label text="TR Quantity" />
+
+                                        <Text text="{jsonListModel>Menge}" />
+                                    </VBox>
+                                </HBox> -->
+                                <HBox class="sapUiSmallMarginTop">
+                                    <VBox width="40%">
+                                        <Label text="Batch No." />
+
+                                        <Text text="{jsonListModel>Charg}" />
+                                    </VBox>
+                                    <VBox width="40%">
+                                        <Label text="TR Number" />
+
+                                        <Text text="{jsonListModel>Tbnum}" />
+                                    </VBox>
+                                </HBox>
+                                <HBox class="sapUiSmallMarginTop">
+                                    <!-- <VBox width="40%">
+                                        <Label text="Bin Number" />
+
+                                        <Text text="{jsonListModel>Lgpla}" />
+                                    </VBox> -->
+                                    <VBox width="40%">
+                                        <Label text="TO Number" />
+
+
+                                        <Text text="{jsonListModel>Tanum}" />
+                                    </VBox>
+                                </HBox>
+                                <HBox class="sapUiSmallMarginTop">
+                                    <Table items="{jsonListModel>BinNumbers}">
+                                        <columns>
+                                            <Column>
+                                                <Text text="Bin Number" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Quantity" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Delete" />
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem vAlign="Middle">
+                                                <cells>
+                                                    <Text
+                                                        text="{jsonListModel>Lgpla}"
+                                                    />
+                                                    <Input
+                                                        value="{jsonListModel>Menge}"
+                                                        change="onLiveChangeQuantityValid"
+                                                        editable="{= ${jsonListModel>Tanum} === '0000000000' ? true : false }"
+                                                        type="Number"
+                                                    />
+                                                    <Button
+                                                        icon="sap-icon://delete"
+                                                        visible="{= ${jsonListModel>Tanum} === '0000000000' ? true : false }"
+                                                        press="onPressDeleteItem"
+                                                    />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </HBox>
+                                <HBox class="sapUiSmallMarginTop">
+                                    <VBox width="100%">
+                                        <Button
+                                            width="100%"
+                                            press="onPressScan"
+                                            visible="{= ${jsonListModel>Tanum} === '0000000000' ? true : false }"
+                                            text="Scan"
+                                            type="Accept"
+                                            icon="sap-icon://qr-code"
+                                        />
+                                    </VBox>
+                                </HBox>
+                            </Panel>
+                        </f:GridListItem>
+                    </f:GridList>
+                </f:content>
+                <!-- DynamicPage Footer -->
+
+                <f:footer>
+                    <Bar>
+                        <contentLeft>
+                            <Button
+                                icon="sap-icon://save"
+                                press="onPressSave"
+                                type="Emphasized"
+                                text="Save"
+                            />
+                        </contentLeft>
+                        <contentRight>
+                            <Button
+                                press="onPressCreateTransferOrder"
+                                icon="sap-icon://create"
+                                type="Emphasized"
+                                text="Create Transfer Order"
+                            />
+                        </contentRight>
+                    </Bar>
+                </f:footer>
+            </f:DynamicPage>
+        </content>
+    </Page>
+</mvc:View>

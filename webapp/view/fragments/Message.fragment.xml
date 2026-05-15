@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <TableSelectDialog items="{jsonMessageModel>/}" noDataText="No Data" cancel="onCancelMessage" liveChange="onSearchMessageDialog" title="Status"  contentWidth="30%">
+        <columns>
+            <Column>
+                <header>
+                    <Text text="Message Type" />
+                </header>
+            </Column>
+            <Column>
+                 <header>
+                    <Text text="Message" />
+                </header>
+            </Column>
+        </columns>
+        <ColumnListItem>
+        
+            <cells>
+                <Text text="{jsonMessageModel>Msgty}" />
+            </cells>
+            <cells>
+                <Text text="{jsonMessageModel>Message}" />
+            </cells>
+        </ColumnListItem>
+    </TableSelectDialog>
+</core:FragmentDefinition>

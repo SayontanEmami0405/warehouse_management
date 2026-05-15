@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <TableSelectDialog items="{jsonMaterialModel>/}" noDataText="No Data" liveChange="onSearchMaterialDialog" title="Material" confirm="onPressMaterialDialog" contentWidth="30%">
+        <columns>
+            <Column>
+                <header>
+                    <Text text="Material" />
+                </header>
+            </Column>
+            
+            <Column>
+                <header>
+                    <Text text="Description" />
+                </header>
+            </Column>
+        </columns>
+        <ColumnListItem>
+        
+            <cells>
+                <Text text="{jsonMaterialModel>Matnr}" />
+            </cells>
+            <cells>
+                <Text text="{jsonMaterialModel>Maktx}" />
+            </cells>
+        </ColumnListItem>
+    </TableSelectDialog>
+</core:FragmentDefinition>

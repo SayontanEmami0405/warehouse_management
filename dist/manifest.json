@@ -1,0 +1,185 @@
+{
+    "_version": "1.17.0",
+    "sap.app": {
+        "id": "com.emami.warehousemanagement",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.14.4",
+            "toolsId": "19e2938a-4277-4b06-9c96-0303e471d9ec"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "zwarehousemgt-manage": {
+                    "semanticObject": "zwarehousemgt",
+                    "action": "manage",
+                    "title": "{{flpTitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                }
+            }
+        },
+        "dataSources": {
+            "ZWM_TRASNFER_REQUIREMENT_SRV": {
+                "uri": "/sap/opu/odata/sap/ZWM_TRASNFER_REQUIREMENT_SRV",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "jsonCentralModel": {
+                "uri": "model/jsonCentralModel.json",
+                "type": "JSON"
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.71.57",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.emami.warehousemanagement.i18n.i18n"
+                }
+            },
+            "jsonCentralModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "jsonCentralModel"
+            },
+            "jsonListModel": {
+                "preload": true,
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "jsonMessageModel": {
+                "preload": true,
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "jsonWareHouseNumberModel": {
+                "preload": true,
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "jsonShipmentTypeModel": {
+                "preload": true,
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "jsonStorageTypeModel": {
+                "preload": true,
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "jsonMaterialModel": {
+                "preload": true,
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "": {
+                "preload": true,
+                "dataSource": "ZWM_TRASNFER_REQUIREMENT_SRV",
+                "settings": {
+                    "useBatch": false,
+                    "defaultUpdateMethod": "PUT"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.emami.warehousemanagement.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteHome",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetHome"
+                    ]
+                },
+                {
+                    "name": "RouteHomePhone",
+                    "pattern": "HomePhone",
+                    "target": [
+                        "TargetHomePhone"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetHome": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Home",
+                    "viewName": "Home"
+                },
+                "TargetHomePhone": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "HomePhone",
+                    "viewName": "HomePhone"
+                }
+            }
+        },
+        
+        "rootView": {
+            "viewName": "com.emami.warehousemanagement.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    }
+
+}
